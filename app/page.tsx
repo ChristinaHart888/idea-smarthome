@@ -1,95 +1,211 @@
+"use client";
+
+import Link from "next/link";
+import QRCode from "../public/wifi-qr.jpg";
 import Image from "next/image";
-import styles from "./page.module.css";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+    const scrollToId = (id: string) => {
+        const element = document.getElementById(id);
+        element?.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest",
+        });
+    };
+    return (
+        <main
+            style={{
+                padding: "5em",
+                paddingBottom: "0",
+            }}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+            <div
+                id="home"
+                style={{
+                    height: "calc(100vh - 5em)",
+                    marginBottom: "5em",
+                }}
+            >
+                <h1
+                    style={{
+                        color: "white",
+                        fontSize: "111px",
+                        fontFamily: "Helvetica",
+                        marginBottom: "1em",
+                    }}
+                >
+                    Welcome to Chua Smart Home Residence
+                </h1>
+                <div
+                    style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "flex-start",
+                    }}
+                >
+                    <div
+                        style={{
+                            border: "1px solid white",
+                            padding: "1em 0.5em",
+                            marginRight: "5em",
+                            fontSize: "32px",
+                            backgroundColor: "purple",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            scrollToId("firstTime");
+                        }}
+                    >
+                        First Time
+                    </div>
+                    <div
+                        style={{
+                            border: "1px solid white",
+                            padding: "1em 0.5em",
+                            backgroundColor: "purple",
+                            fontSize: "32px",
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+                            cursor: "pointer",
+                        }}
+                    >
+                        Control Panel
+                    </div>
+                </div>
+            </div>
+            <div
+                id="firstTime"
+                style={{
+                    height: "calc(100vh - 5em)",
+                    position: "relative",
+                    marginBottom: "5em",
+                }}
+            >
+                <h1>
+                    For first time visitors, please watch this orientation video
+                </h1>
+                <video src="https://www.youtube.com/watch?v=SlPhMPnQ58k&list=RDMM&index=14"></video>
+                <div
+                    style={{
+                        bottom: "20%",
+                        left: "0%",
+                        position: "absolute",
+                        border: "1px solid green",
+                        padding: "1em",
+                        fontSize: "32px",
+                        cursor: "pointer",
+                    }}
+                    onClick={() => scrollToId("home")}
+                >
+                    Back
+                </div>
+                <div
+                    style={{
+                        bottom: "20%",
+                        right: "0%",
+                        position: "absolute",
+                        border: "1px solid green",
+                        padding: "1em",
+                        fontSize: "32px",
+                        cursor: "pointer",
+                    }}
+                    onClick={() => scrollToId("toilet")}
+                >
+                    Next
+                </div>
+            </div>
+            <div
+                id="toilet"
+                style={{
+                    height: "calc(100vh - 5em)",
+                    position: "relative",
+                }}
+            >
+                <h1
+                    style={{
+                        marginBottom: "0.5em",
+                    }}
+                >
+                    Wifi
+                </h1>
+                <div
+                    className="tutorial"
+                    style={{
+                        display: "flex",
+                    }}
+                >
+                    <div className="qrCode">
+                        <Image
+                            src={QRCode}
+                            height={400}
+                            width={400}
+                            alt="Qr code "
+                        ></Image>
+                    </div>
+                    <div
+                        className="wifiDetails"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            backgroundColor: "#333",
+                            flexGrow: 1,
+                            padding: "1em",
+                        }}
+                    >
+                        <h3
+                            style={{
+                                fontSize: "42px",
+                                marginBottom: "1em",
+                            }}
+                        >
+                            Wifi Details
+                        </h3>
+                        <span
+                            style={{
+                                fontSize: "32px",
+                                marginBottom: "1em",
+                            }}
+                        >
+                            SSID: ideaHomeGuest
+                        </span>
+                        <span
+                            style={{
+                                fontSize: "32px",
+                            }}
+                        >
+                            Password: 97796996
+                        </span>
+                    </div>
+                </div>
+                <div
+                    style={{
+                        bottom: "20%",
+                        left: "0%",
+                        position: "absolute",
+                        border: "1px solid green",
+                        padding: "1em",
+                        fontSize: "32px",
+                        cursor: "pointer",
+                    }}
+                    onClick={() => scrollToId("firstTime")}
+                >
+                    Back
+                </div>
+                <div
+                    style={{
+                        bottom: "20%",
+                        right: "0%",
+                        position: "absolute",
+                        border: "1px solid green",
+                        padding: "1em",
+                        fontSize: "32px",
+                        cursor: "pointer",
+                    }}
+                    onClick={() => scrollToId("toilet")}
+                >
+                    Next
+                </div>
+            </div>
+        </main>
+    );
 }
