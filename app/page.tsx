@@ -4,6 +4,7 @@ import Link from "next/link";
 import QRCode from "../public/wifi-qr.jpg";
 import stairsBag from "../public/stairs_bag.jpg";
 import Image from "next/image";
+import ToiletBtn from "../public/toilet_btn.jpg";
 import Slide from "./slide";
 
 export default function Home() {
@@ -156,10 +157,21 @@ export default function Home() {
                         <div
                             className="vid"
                             style={{
-                                minWidth: "50%",
+                                maxWidth: "50%",
                                 backgroundColor: "#333",
+                                minWidth: "fit-content",
                             }}
-                        ></div>
+                        >
+                            <Image
+                                src={ToiletBtn}
+                                alt="Image of toilet"
+                                style={{
+                                    maxHeight: "514px",
+                                    maxWidth: "100%",
+                                    width: "auto",
+                                }}
+                            ></Image>
+                        </div>
                         <div
                             className="text"
                             style={{
