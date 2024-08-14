@@ -81,6 +81,9 @@ export default function Home() {
                     src={stairsBag}
                     width={920}
                     alt="Image of bags on stairs"
+                    style={{
+                        maxHeight: "69%",
+                    }}
                 ></Image>
             </Slide>
             <Slide id="wifi" btn1Id="firstTime" btn2Id="toilet">
@@ -163,7 +166,12 @@ export default function Home() {
                                 paddingInline: "1em",
                             }}
                         >
-                            <div className="lift">
+                            <div
+                                className="lift"
+                                style={{
+                                    marginBottom: "1em",
+                                }}
+                            >
                                 <h2>Lift the lid</h2>
                                 <p>
                                     The top lid should automatically be lifted
