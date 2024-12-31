@@ -5,7 +5,10 @@ import QRCode from "../public/wifi-qr.jpg";
 import stairsBag from "../public/stairs_bag.jpg";
 import Image from "next/image";
 import ToiletBtn from "../public/toilet_btn.jpg";
+import ToiletRemote from "../public/Flush.png";
 import Slide from "./slide";
+import useScreenOrientation from "./useOrientation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const scrollToId = (id: string) => {
@@ -16,6 +19,16 @@ export default function Home() {
             inline: "nearest",
         });
     };
+    const orientation = useScreenOrientation();
+    const [isPortrait, setIsPortrait] = useState<boolean>();
+
+    useEffect(() => {
+        setIsPortrait(
+            orientation === "portrait-primary" ||
+                orientation === "portrait-secondary"
+        );
+    }, [orientation]);
+
     return (
         <main
             style={{
@@ -60,9 +73,9 @@ export default function Home() {
                             scrollToId("firstTime");
                         }}
                     >
-                        First Time
+                        Start Tour
                     </div>
-                    <div
+                    {/* <div
                         style={{
                             border: "1px solid white",
                             padding: "1em 0.5em",
@@ -73,7 +86,7 @@ export default function Home() {
                         }}
                     >
                         Control Panel
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Slide id="firstTime" btn1Id="home" btn2Id="wifi">
@@ -145,66 +158,107 @@ export default function Home() {
                     </div>
                 </div>
             </Slide>
-            <Slide id="toilet" btn1Id="wifi" btn2Id="">
+            <Slide id="toilet" btn1Id="wifi" btn2Id="remote">
                 <div>
-                    <h1>Toilet</h1>
+                    <h1>How to use the toilet</h1>
                     <div
                         className="content"
                         style={{
                             display: "flex",
+                            flexDirection: isPortrait ? "column" : "row",
                         }}
                     >
                         <div
-                            className="vid"
+                            className="bowl"
                             style={{
-                                maxWidth: "50%",
-                                backgroundColor: "#333",
-                                minWidth: "fit-content",
+                                display: "flex",
+                                width: isPortrait ? "100%" : "50%",
+                                flexDirection: "column",
                             }}
                         >
-                            <Image
-                                src={ToiletBtn}
-                                alt="Image of toilet"
-                                style={{
-                                    maxHeight: "514px",
-                                    maxWidth: "100%",
-                                    width: "auto",
-                                }}
-                            ></Image>
-                        </div>
-                        <div
-                            className="text"
-                            style={{
-                                paddingInline: "1em",
-                            }}
-                        >
+                            <h2>Button</h2>
                             <div
-                                className="lift"
+                                className="instructions"
                                 style={{
-                                    marginBottom: "1em",
+                                    display: "flex",
                                 }}
                             >
-                                <h2>Lift the lid</h2>
-                                <p>
-                                    The top lid should automatically be lifted
-                                    up when it senses movement. If it is still
-                                    down, you can try tapping the button at the
-                                    bottom right of the toilet bowl with your
-                                    feet. Tap the button again to lift up the
-                                    seat cover.
-                                </p>
+                                <div
+                                    className="vid"
+                                    style={{
+                                        maxWidth: "40%",
+                                        backgroundColor: "#333",
+                                        minWidth: "fit-content",
+                                    }}
+                                >
+                                    <Image
+                                        src={ToiletBtn}
+                                        alt="Image of toilet"
+                                        style={{
+                                            maxHeight: isPortrait
+                                                ? "300px"
+                                                : "400px",
+                                            maxWidth: "100%",
+                                            width: "auto",
+                                        }}
+                                    ></Image>
+                                </div>
+                                <div
+                                    className="text"
+                                    style={{
+                                        paddingInline: "1em",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                    }}
+                                >
+                                    <div
+                                        className="lift"
+                                        style={{
+                                            height: "50%",
+                                        }}
+                                    >
+                                        <h2>Lift the seat cover</h2>
+                                        <p>
+                                            Hit the circled button with your
+                                            feet
+                                        </p>
+                                    </div>
+                                    <div className="flush">
+                                        <h2>Flush</h2>
+                                        <p>
+                                            Hit the circled button on the bottom
+                                            of the toilet bowl until the lid
+                                            closes.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="flush">
-                                <h2>Flush</h2>
-                                <p>
-                                    Hit the black button on the bottom of the
-                                    toilet bowl. The lid and seat cover should
-                                    automatically close and flushing should
-                                    begin.
-                                </p>
+                        </div>
+                        <div
+                            className="remote"
+                            style={{
+                                width: isPortrait ? "100%" : "50%",
+                                paddingLeft: "1em",
+                            }}
+                        >
+                            <h2>Remote</h2>
+                            <div className="img">
+                                <Image
+                                    src={ToiletRemote}
+                                    alt="Img of remote"
+                                    style={{
+                                        maxWidth: "100%",
+                                        height: "auto",
+                                    }}
+                                ></Image>
                             </div>
                         </div>
                     </div>
+                </div>
+            </Slide>
+            <Slide id="remote" btn1Id="toilet" btn2Id="">
+                <div>
+                    <h1>Feel free to grab some drinks from the fridge</h1>
                 </div>
             </Slide>
         </main>
