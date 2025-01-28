@@ -8,6 +8,7 @@ import ToiletBtn from "../public/toilet_btn.jpg";
 import ToiletRemote from "../public/Flush.png";
 import Slide from "./slide";
 import useScreenOrientation from "./useOrientation";
+import lnyPic from "../public/lny_2025_hero_banner_image.webp";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -259,6 +260,14 @@ export default function Home() {
             <Slide id="remote" btn1Id="toilet" btn2Id="">
                 <div>
                     <h1>Feel free to grab some drinks from the fridge</h1>
+                    <Image
+                        src={lnyPic}
+                        alt="Happy Lunar New Year"
+                        style={{
+                            maxWidth: "100%",
+                            height: "auto",
+                        }}
+                    ></Image>
                 </div>
             </Slide>
         </main>

@@ -7,6 +7,7 @@ interface slideProps {
     btn1Id: string;
     btn2Txt?: string;
     btn2Id: string;
+    lastSlide?: boolean;
 }
 
 export default function Slide({
@@ -16,6 +17,7 @@ export default function Slide({
     btn2Txt,
     btn1Id,
     btn2Id,
+    lastSlide,
 }: slideProps) {
     const scrollToId = (id: string) => {
         const element = document.getElementById(id);
@@ -50,22 +52,25 @@ export default function Slide({
             >
                 {btn1Txt ? btn1Txt : "Back"}
             </div>
-            <div
-                style={{
-                    bottom: "10%",
-                    right: "0%",
-                    position: "absolute",
-                    border: "1px solid green",
-                    padding: "1em",
-                    fontSize: "32px",
-                    cursor: "pointer",
-                }}
-                onClick={() => {
-                    scrollToId(btn2Id);
-                }}
-            >
-                {btn2Txt ? btn2Txt : "Next"}
-            </div>
+
+            {btn2Txt !== "" && btn2Id && (
+                <div
+                    style={{
+                        bottom: "10%",
+                        right: "0%",
+                        position: "absolute",
+                        border: "1px solid green",
+                        padding: "1em",
+                        fontSize: "32px",
+                        cursor: "pointer",
+                    }}
+                    onClick={() => {
+                        scrollToId(btn2Id);
+                    }}
+                >
+                    {btn2Txt ? btn2Txt : "Next"}
+                </div>
+            )}
         </div>
     );
 }
