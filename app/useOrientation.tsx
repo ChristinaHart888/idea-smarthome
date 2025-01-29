@@ -1,6 +1,11 @@
+"use client";
 import { useState, useEffect } from "react";
 
-const getOrientation = () => window.screen.orientation.type;
+const getOrientation = () => {
+    return typeof window !== "undefined"
+        ? window.screen.orientation.type
+        : "portrait-secondary";
+};
 
 const useScreenOrientation = () => {
     const [orientation, setOrientation] = useState(getOrientation());
@@ -10,10 +15,15 @@ const useScreenOrientation = () => {
     };
 
     useEffect(() => {
-        window.addEventListener("orientationchange", updateOrientation);
-        return () => {
-            window.removeEventListener("orientationchange", updateOrientation);
-        };
+        if (typeof window !== "undefined") {
+            window.addEventListener("orientationchange", updateOrientation);
+            return () => {
+                window.removeEventListener(
+                    "orientationchange",
+                    updateOrientation
+                );
+            };
+        }
     }, []);
 
     return orientation;

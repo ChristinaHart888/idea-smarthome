@@ -20,7 +20,7 @@ export default function Home() {
             inline: "nearest",
         });
     };
-    const orientation = window && useScreenOrientation();
+    const orientation = useScreenOrientation();
     const [isPortrait, setIsPortrait] = useState<boolean>();
 
     useEffect(() => {
